@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FastAPI Auth Todo Calendar</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <div class="year" id="year-label"></div>
+  </div>
+
+  <div class="topbar-center">
+    <button class="nav-btn" id="prev-month" type="button">‹</button>
+    <div class="month" id="month-label">Todo Calendar</div>
+    <button class="nav-btn" id="next-month" type="button">›</button>
+  </div>
+
+  <div class="topbar-right">
+    <button class="nav-btn outline" id="today" type="button">Bugun</button>
+    <div class="notify" id="notify-box">
+      <button class="nav-btn outline notify-btn" id="notify-btn" type="button">
+        &#128276;
+        <span id="notify-count" class="badge hidden">0</span>
+      </button>
+
+      <div id="notify-popover" class="notify-popover hidden">
+        <div class="notify-title">Keyingi 5 kun</div>
+        <ul id="notify-list"></ul>
+      </div>
+    </div>
+    <button class="nav-btn outline hidden" id="logout-btn" type="button">Logout</button>
+  </div>
+</header>
+
+<section id="auth-page" class="auth-page">
+  <div class="auth-card">
+    <h2>Login</h2>
+    <p class="hint">Akkauntingiz bo‘lsa login qiling.</p>
+
+    <input id="login-username" placeholder="Username" />
+    <input id="login-password" type="password" placeholder="Password" />
+
+    <button class="btn primary" id="login-btn">Login</button>
+  </div>
+
+  <div class="auth-card">
+    <h2>Register</h2>
+    <p class="hint">Akkauntingiz yo‘q bo‘lsa register qiling.</p>
+
+    <input id="reg-username" placeholder="Username" />
+    <input id="reg-password" type="password" placeholder="Password" />
+
+    <button class="btn primary" id="register-btn">Register</button>
+  </div>
+</section>
+
+
+<main id="app-page" class="layout hidden">
+  <section class="card calendar-card">
+    <div class="dow-row">
+      <div class="week-col"></div>
+      <div class="dow">Du</div>
+      <div class="dow">Se</div>
+      <div class="dow">Ch</div>
+      <div class="dow">Pa</div>
+      <div class="dow">Ju</div>
+      <div class="dow weekend">Sh</div>
+      <div class="dow weekend">Ya</div>
+    </div>
+
+    <div id="calendar-grid" class="calendar-grid"></div>
+  </section>
+
+  <section class="card panel">
+    <div class="panel-header">
+      <div>
+        <h2 class="panel-title" id="selected-date">—</h2>
+        <div class="panel-subtitle" id="selected-subtitle"></div>
+      </div>
+
+      <button class="btn primary" id="open-add" type="button">+ Task</button>
+    </div>
+
+    <form id="create-form" class="form hidden">
+      <label class="field">
+        <span class="label">Title</span>
+        <input id="title" type="text" required placeholder="Masalan: Dars qilish" />
+      </label>
+
+      <label class="field">
+        <span class="label">Description</span>
+        <textarea id="description" rows="2" placeholder="Izoh..."></textarea>
+      </label>
+
+      <div class="actions">
+        <button class="btn primary" id="submit-btn" type="submit">Saqlash</button>
+        <button class="btn" id="cancel-add" type="button">Bekor</button>
+      </div>
+    </form>
+
+    <div id="status" class="status"></div>
+    <ul id="task-list" class="task-list"></ul>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
